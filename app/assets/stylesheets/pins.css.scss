@@ -1,6 +1,7 @@
 a {
   color: #dd5566;
 }
+
 h1 {
   font-family: 'Lobster', cursive;
   font-size: 60px;
@@ -19,6 +20,11 @@ h1 {
   background-color: #fff;
   padding: 40px;  
 }
+
 hr{
   clear:both;
+}
+
+body {
+	background: url(asset-path('laptop-background.jpg')) no-repeat;
 }
