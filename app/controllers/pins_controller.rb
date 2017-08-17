@@ -13,4 +13,3 @@ class PinsController < ApplicationController
   	render :show
   end
   
-end
