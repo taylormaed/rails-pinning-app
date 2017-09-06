@@ -1,8 +1,5 @@
 require "spec_helper"
 
-
-require "spec_helper"
-
 RSpec.describe "Our Application Routes" do
     describe "GET /pins/name-:slug" do
         
@@ -20,4 +17,4 @@ RSpec.describe "Our Application Routes" do
         
         
     end
-end
+end              
