@@ -40,6 +40,7 @@ group :development, :test do
   gem 'database_cleaner'
 end
 
+gem 'nokogiri', '~> 1.8', '>= 1.8.1'
 gem 'rspec'
 gem 'rspec-rails'
 gem 'rails_12factor'
