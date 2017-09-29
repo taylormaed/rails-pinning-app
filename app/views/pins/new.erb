@@ -1,4 +1,13 @@
 <h1>Add a New Pin</h1>
+<%= if !@errors.nil? %>
+<div class="text-danger">
+	<label><%= pluralize(@errors.count, "error") %> prohibited this pin from being saved: </label>
+	<ul>
+		<%= @errors.full_messages.each do |msg|%>
+		<li><%= "#{msg}"%></li>
+		<% end %>
+	</ul>
+</div>
 
 <%= form_for(@pin) do |f| %>
 
