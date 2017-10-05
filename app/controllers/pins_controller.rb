@@ -39,5 +39,16 @@ class PinsController < ApplicationController
         render :edit
     end
 
+    def update
+        @pin = Pin.find(params[:id])
+        if @pin.update_attributes(pin_params)
+            redirect_to pin_path(@pin), notice: "Pin has been updated successfully."
+        else
+            @errors = @pin.errors
+            render action: "edit"
+        end
+    end
+
+
 
 end
