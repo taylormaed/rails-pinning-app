@@ -25,13 +25,16 @@
           </div>
             <hr/>
             <p class="text"><%= "#{pin.text}" %></p>
+            <div align="left">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <%= link_to "Edit a pin", edit_pin_path(pin.id) %>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
-  <% end %>
+  <% end %>s
 </div>
-<div>
-  <%= link_to "Edit a pin", edit_pin_path(@pins) %>
+
 
 <hr/>

@@ -29,11 +29,7 @@ class PinsController < ApplicationController
         end
     end
 
-    private
-    def pin_params
-        params.require(:pin).permit(:title, :url, :slug, :text, :category_id)
-    end
-
+    
     def edit
         @pin = Pin.find(params[:id])
         render :edit
@@ -47,6 +43,12 @@ class PinsController < ApplicationController
             @errors = @pin.errors
             render action: "edit"
         end
+
+    private
+    def pin_params
+        params.require(:pin).permit(:title, :url, :slug, :text, :category_id)
+    end
+
     end
 
 
