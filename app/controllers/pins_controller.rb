@@ -37,20 +37,19 @@ class PinsController < ApplicationController
 
     def update
         @pin = Pin.find(params[:id])
-        if @pin.update_attributes(pin_params)
-            redirect_to pin_path(@pin), notice: "Pin has been updated successfully."
-        else
-            @errors = @pin.errors
-            render action: "edit"
-        end
+            if @pin.update_attributes(pin_params)
+                redirect_to pin_path(@pin), notice: "Pin has been updated successfully."
+            else
+                @errors = @pin.errors
+                render action: "edit"
+            end
+    end
 
     private
     def pin_params
         params.require(:pin).permit(:title, :url, :slug, :text, :category_id)
     end
 
-    end
-
-
-
 end
+
+

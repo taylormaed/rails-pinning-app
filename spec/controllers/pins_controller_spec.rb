@@ -48,38 +48,39 @@ RSpec.describe PinsController do
       end
     end
     
-    it 'responds with a redirect' do
-      post :create, pin: @pin_hash
-      expect(response.redirect?).to be(true)
-    end
+      it 'responds with a redirect' do
+        post :create, pin: @pin_hash
+        expect(response.redirect?).to be(true)
+      end
     
-    it 'creates a pin' do
-      post :create, pin: @pin_hash  
-      expect(Pin.find_by_slug("rails-wizard").present?).to be(true)
-    end
+      it 'creates a pin' do
+        post :create, pin: @pin_hash  
+        expect(Pin.find_by_slug("rails-wizard").present?).to be(true)
+      end
     
-    it 'redirects to the show view' do
-      post :create, pin: @pin_hash
-      expect(response).to redirect_to(pin_url(assigns(:pin)))
-    end
+      it 'redirects to the show view' do
+        post :create, pin: @pin_hash
+        expect(response).to redirect_to(pin_url(assigns(:pin)))
+      end
     
-    it 'redisplays new form on error' do
+      it 'redisplays new form on error' do
       # The title is required in the Pin model, so we'll
       # delete the title from the @pin_hash in order
       # to test what happens with invalid parameters
-      @pin_hash.delete(:title)
-      post :create, pin: @pin_hash
-      expect(response).to render_template(:new)
-    end
+        @pin_hash.delete(:title)
+        post :create, pin: @pin_hash
+        expect(response).to render_template(:new)
+      end
     
-    it 'assigns the @errors instance variable on error' do
+      it 'assigns the @errors instance variable on error' do
       # The title is required in the Pin model, so we'll
       # delete the title from the @pin_hash in order
       # to test what happens with invalid parameters
-      @pin_hash.delete(:title)
-      post :create, pin: @pin_hash
-      expect(assigns[:errors].present?).to be(true)
-    end    
+        @pin_hash.delete(:title)
+        post :create, pin: @pin_hash
+        expect(assigns[:errors].present?).to be(true)
+      end    
+  
   describe "GET edit" do
     before(:each) do
       @pin = Pin.find(3)
@@ -92,14 +93,62 @@ RSpec.describe PinsController do
 
       it 'renders the edit template' do
       get :edit, id: @pin.id
-      expect(response.success?).to be(true)
+      expect(response).to render_template(:edit)
       end
 
       it 'assigns an instance variable called @pin to the pin with the appropriate id' do
       get :edit, id: @pin.id
-      expect(response.success?).to be(true)
+      expect(assigns(:pin)).to eq(@pin)
+      end
     end
   end
 
+  describe "POST update" do
+    before (:each) do
+      @pin  = Pin.find(2)
+      @pin_hash {
+        title: 'Rails for Zombies', 
+        url: 'http://railsforzombies.org', 
+        text: "A fun, gamified way to hone your Rails skills! Come on...who doesn't like fighting zombies?!", 
+        slug: "rails-for-zombies",
+        category_id: "rails"
+      }
+      @error_hash {
+        title: nil,
+        category_id: nil,
+        url: nil,
+        text: 8,
+        slug: nil 
+      }
+    end
+
+      context "request to /pins with valid parameters" do
+        it 'responds with success' do
+          put :update, id: @pin.id, pin: @pin_hash
+          expect(response).to redirect_to("/pins/#{@pin.id}")
+        end
+
+        it 'updates a pin' do
+          put :update, id: @pin.id, pin: @pin_hash
+          expect(Pin.find(@pin.id).title).to eq(@pin_hash[:title])
+        end
+
+        it 'redirects to the show view' do
+          put :update, id: @pin.id, pin: @pin_hash
+          expect(response).to redirect_to(pin_url(assigns(:pin)))
+        end
+      end
+
+      context "request to /pins with invalid parameters" do
+        it 'assigns an @errors instance variable' do
+            put :update, id: @pin.id, pin: @error_hash
+            expect(assigns[:errors].present?).to be(true)
+        end
+
+        it 'renders the edit view' do
+          put :update, id: @pin.id, pin: @error_hash
+          expect(response).to render_template(:edit)
+        end
+      end
   end
 end
