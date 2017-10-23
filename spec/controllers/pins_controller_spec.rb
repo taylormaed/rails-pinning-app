@@ -101,7 +101,7 @@ RSpec.describe PinsController do
       expect(assigns(:pin)).to eq(@pin)
       end
     end
-  end
+  end 
 
   describe "POST update" do
     before (:each) do
