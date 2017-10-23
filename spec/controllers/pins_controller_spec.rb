@@ -106,14 +106,15 @@ RSpec.describe PinsController do
   describe "POST update" do
     before (:each) do
       @pin  = Pin.find(2)
-      @pin_hash {
+      @pin_hash = {
         title: 'Rails for Zombies', 
         url: 'http://railsforzombies.org', 
         text: "A fun, gamified way to hone your Rails skills! Come on...who doesn't like fighting zombies?!", 
         slug: "rails-for-zombies",
         category_id: "rails"
       }
-      @error_hash {
+      
+      @error_hash = {
         title: nil,
         category_id: nil,
         url: nil,
