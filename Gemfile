@@ -44,7 +44,8 @@ gem 'nokogiri', '~> 1.8', '>= 1.8.1'
 gem 'rspec'
 gem 'rspec-rails'
 gem 'rails_12factor'
-gem 'paperclip'
+gem 'paperclip', '~> 4.3.6'
+gem 'aws-sdk', '~> 1.6'
 
 group :development do
 	gem 'web-console', '~> 2.0'
