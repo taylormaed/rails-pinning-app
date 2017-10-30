@@ -11,7 +11,7 @@
           <div class="pin">
             <div class="pin-header row">
               <div class="logo-thumbnail col-xs-3">
-                <% if pin.image.exists? %>
+                <% if self.pin.image.exists? %>
                 <%= image_tag(pin.image.url(:thumb)) %>
                 <% else %>
               <% if "#{self.pin.category.name}" == "rails" %>
