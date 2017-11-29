@@ -69,10 +69,10 @@ class UsersController < ApplicationController
     @user = User.authenticate(params[:email], params[:password])
 
     if @user.nil?
-      redirect_to "/users/#{@user.id}"
-    else
       @errors = "The email or password you entered is incorrect."
       render :login
+    else
+      redirect_to "/users/#{@user.id}"
     end
 
   end
