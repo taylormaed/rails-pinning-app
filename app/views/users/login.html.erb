@@ -1,19 +1,11 @@
 <h1>Log In</h1>
 
-<% if @errors.exists? %>
-<div class="text-danger">
-  <label><%= pluralize(@errors.count, "error") %>
-    prohibited the login:
-  </label>
-  <ul>
-    <% @errors.full_messages.each do |msg| %>
-    <li><%= "#{msg}"%></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
 <%= bootstrap_form_tag url: '/login' do |f| %>
-<%= f.email_field :email %>
-<%= f.password_field :password %>
-<%= f.submit "Log In" %>
+<% if @errors %>
+<h2><%= @errors %></h2>
+  <% end %>
+  <%= f.email_field :email %>
+  <%= f.password_field :password %>
+  <%= f.check_box :remember_me %>
+  <%= f.submit "Log In" %>
 <% end %>
