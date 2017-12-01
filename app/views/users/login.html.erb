@@ -1,6 +1,6 @@
 <h1>Log In</h1>
 
-<% if @errors.nil? %>
+<% if @errors.exists? %>
 <div class="text-danger">
   <label><%= pluralize(@errors.count, "error") %>
     prohibited the login:

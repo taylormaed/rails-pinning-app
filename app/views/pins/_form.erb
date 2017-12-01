@@ -1,4 +1,4 @@
-<% if !@errors.nil? %>
+<% if @errors.any? %>
 <div class="text-danger">
   <label><%= pluralize(@errors.count, "error") %>
     prohibited this pin from being saved:
